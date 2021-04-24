@@ -10,7 +10,7 @@ doble numero = numero*2
 esMultiploDeTres nro = mod nro 3 == 0
 
 -- Ejercicio 2 --
-esMultiploDe nro1 nro2 = mod nro1 nro2 == 0
+esMultiploDe nro1 nro2 = mod nro2 nro1 == 0
 
 -- Ejercicio 3 --
 cubo nro = nro**3
@@ -48,11 +48,36 @@ mcm nro1 nro2 = (nro1 * nro2) / mcd nro1 nro2
 
 -- Ejercicio 10 -- 
 
---dispersion m1 m2 m3
---  | m1 < m2 < m3 = m1-m2
---  | m2< m3 < m1
---  | m3< m2 < m1
---  | m1 < m3 < m2
---  | m3 < m1 < m2
+-- Retornan el minimo y maximo de 3 numeros ingresados segun corresponda --
+minOf3 n1 n2 n3 = min n1 (min n2 n3)
+maxOf3 n1 n2 n3 = max n1 (max n2 n3)
 
-dame nro1 nro2 nro3 = min nro3 min nro1 nro2 
+dispersion m1 m2 m3 = (maxOf3 m1 m2 m3) - (minOf3 m1 m2 m3) 
+
+tiposDeDias :: Number -> Number -> Number -> String
+tiposDeDias d1 d2 d3 
+    | 30 > (dispersion d1 d2 d3) = "Dias parejos"
+    | 100 < (dispersion d1 d2 d3) = "Dias locos"
+    | otherwise = "Dias normales"
+
+--------------------------------- Definicion y modelado de datos ----------------------------
+
+data Persona = 
+    Persona{
+        nombre :: String,
+        edad :: Number
+    }deriving Show
+
+--cumplioAnios :: Persona -> Number
+--cumplioAnios p 
+--p = { edad = (edad p + 1) }
+
+-- Calculo del factorial --
+factorial 0 = 1
+factorial n = n * factorial (n-1)
+
+-- Sucesion de fibonacci --
+fibonacci 0 = 0
+fibonacci 1 = 1
+fibonacci n = fibonacci (n-1) + fibonacci(n-2)
+
