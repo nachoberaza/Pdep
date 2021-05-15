@@ -83,3 +83,8 @@ fibonacci n = fibonacci (n-1) + fibonacci(n-2)
 
 -- Calculo combinatoria --
 combinatoria m n = (factorial m) / ( (factorial n) * ( factorial (m-n) ) )
+
+
+
+
+---------------------------------------------------------------------------
