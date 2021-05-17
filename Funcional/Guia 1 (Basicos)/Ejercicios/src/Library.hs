@@ -60,6 +60,23 @@ tiposDeDias d1 d2 d3
     | 100 < (dispersion d1 d2 d3) = "Dias locos"
     | otherwise = "Dias normales"
 
+-- Ejercio 11 --
+
+pesoPino :: Number -> Number
+pesoPino altura
+    | altura < 3 = altura * 3
+    | otherwise = altura * 2
+
+esPesoUtil :: Number -> Bool
+esPesoUtil peso
+    | peso > 400 && peso < 1000 = True
+    | otherwise = False
+
+sirvePino :: Number -> Bool
+sirvePino = (esPesoUtil.pesoPino)
+
+-- Ejercicio 12 --
+
 --------------------------------- Definicion y modelado de datos ----------------------------
 
 data Persona = 
