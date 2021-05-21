@@ -24,22 +24,23 @@ triple n = (* 3) n
 
 -- Ejercicio 5 --
 esNumeroPositivo :: Number -> Bool
-esNumeroPositivo n = ( > 0) n
+esNumeroPositivo n = ( >= 0.0) n
 
--- Composicion --
+------------------------- Composicion ------------------------- 
 
 -- Ejercicio 6 --
 esMultiploDe :: Number -> Number -> Bool
 esMultiploDe n m = ( (== 0).(mod n) ) m
 
 -- Ejercicio 7 --
--- Falta
+esBisiesto anio = esMultiploDe anio 4 && (not.esMultiploDe anio) 100
 
 -- Ejercicio 8 --
 inversaRaizCuadrada = (inversa.sqrt)
 
 -- Ejercicio 9 --
-incrementaMCuadradoN m n = (+ (m^2)) n --(m^2) + n
+incrementMCuadradoN m n = ((n+).(^2)) m
 
 -- Ejercicio 10 --
 esResultadoPar n m = ((even).(^m)) n
+
