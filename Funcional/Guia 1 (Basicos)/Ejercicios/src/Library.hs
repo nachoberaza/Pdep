@@ -29,7 +29,7 @@ area base altura = base * altura
 -- | otherwise = False
 
 -- Sin guardas --
-esBisiesto anio = esMultiploDe anio 400 == True || esMultiploDe anio 100 == False || esMultiploDe anio 4 == True || otherwise == False
+esBisiesto anio = esMultiploDe 4 anio && not (esMultiploDe 100 anio)
 
 -- Ejercicio 6 --
 celsiusToFahr grados = (grados * 9/5 ) + 32
@@ -52,28 +52,27 @@ mcm nro1 nro2 = (nro1 * nro2) / mcd nro1 nro2
 minOf3 n1 n2 n3 = min n1 (min n2 n3)
 maxOf3 n1 n2 n3 = max n1 (max n2 n3)
 
-dispersion m1 m2 m3 = (maxOf3 m1 m2 m3) - (minOf3 m1 m2 m3) 
+dispersion m1 m2 m3 = maxOf3 m1 m2 m3 - minOf3 m1 m2 m3
 
 tiposDeDias :: Number -> Number -> Number -> String
 tiposDeDias d1 d2 d3 
-    | 30 > (dispersion d1 d2 d3) = "Dias parejos"
-    | 100 < (dispersion d1 d2 d3) = "Dias locos"
+    | 30 > dispersion d1 d2 d3 = "Dias parejos"
+    | 100 < dispersion d1 d2 d3 = "Dias locos"
     | otherwise = "Dias normales"
 
 -- Ejercio 11 --
 
-pesoPino :: Number -> Number
-pesoPino altura
-    | altura < 3 = altura * 3
-    | otherwise = altura * 2
+-- pesoPino :: Number -> Number
+-- pesoPino altura
+--     | altura < 3 = altura * 3
+--     | otherwise = altura*300 + (altura-300) * 200
 
-esPesoUtil :: Number -> Bool
-esPesoUtil peso
-    | peso > 400 && peso < 1000 = True
-    | otherwise = False
+-- esPesoUtil :: Number -> Bool
+-- esPesoUtil peso = peso > 400 && peso < 1000
 
-sirvePino :: Number -> Bool
-sirvePino = (esPesoUtil.pesoPino)
+
+-- sirvePino :: Number -> Bool
+-- sirvePino = esPesoUtil.pesoPino
 
 -- Ejercicio 12 --
 
@@ -105,3 +104,25 @@ combinatoria m n = (factorial m) / ( (factorial n) * ( factorial (m-n) ) )
 
 
 ---------------------------------------------------------------------------
+
+-- Mumuki --
+
+diasParejos n1 n2 n3 =  30 > dispersion n1 n2 n3
+
+diasLocos n1 n2 n3 = 100 < dispersion n1 n2 n3
+
+diasNormales n1 n2 n3 = not (diasLocos n1 n2 n3) && not (diasParejos n1 n2 n3)
+
+
+--Peso pino
+    -- 3 kg/cm -> hasta los 3 metros
+    -- 2 kg/cm -> a partir de los 3 metros 
+
+
+pesoPino altura
+    | altura < 300 = altura*300
+    | otherwise = ( altura - (altura-300) ) * 300 + (altura-300) * 200
+
+esPesoUtil peso = (peso > 400) && (peso < 1000)
+
+sirvePino = esPesoUtil.pesoPino
