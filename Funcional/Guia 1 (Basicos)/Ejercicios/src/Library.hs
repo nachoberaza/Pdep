@@ -105,3 +105,7 @@ combinatoria m n = (factorial m) / ( (factorial n) * ( factorial (m-n) ) )
 
 
 ---------------------------------------------------------------------------
+
+lista=["hola","hola","hola","hola"]
+
+juntarStrings listaDeListas = foldl1 (++ " ") listaDeListas
