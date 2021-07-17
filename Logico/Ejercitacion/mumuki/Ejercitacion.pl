@@ -44,11 +44,40 @@ dificilDeEstacionar(Lugar):-
     tieneAuto(Persona)
   ).
 
-/* Fin del mundo conocido */
-
 zonaDesierta(Zona):-
   not(zonaHabitada(Zona)), 
   forall(
     quedaEn(_,Zona),
     not(quiereIr(_,Zona))
   ).
+
+
+trabajaEn(hernan,compras).
+
+trabajaEn(maquiavelo,ventas).
+trabajaEn(camilo,ventas).
+trabajaEn(anastasia,ventas).
+
+trabajaEn(ingrid,ilegales).
+trabajaEn(tomas,ilegales).
+
+/* 
+
+Una persona trabaja con otra si ambas trabajan en el mismo sector
+
+Una persona trabaja con todas las que trabajan en el mismo departamento
+
+*/
+
+trabajaCon(Persona,Companiero):-
+  trabajaEn(Persona,Sector1),
+  forall(
+    trabajaEn(Companiero,Sector2),
+    Sector1 == Sector2
+  ).
+/* Fin del mundo conocido */
+
+
+
+
+
