@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: Guia_1_Ejercicios
+Bundle-ManifestVersion: 2
+Bundle-Name: Guia_1_Ejercicios
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: Guia_1_Ejercicios; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xtext.generator,
+ org.uqbar.project.wollok,
+ org.uqbar.project.wollok.launch,
+ org.uqbar.project.wollok.lib,
+ org.eclipse.xtext.ui
+Import-Package: org.apache.log4j,
+ org.apache.commons.logging
+Bundle-RequiredExecutionEnvironment: JavaSE-11
