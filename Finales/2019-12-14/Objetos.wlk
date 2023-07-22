@@ -85,3 +85,37 @@ class ShortDenim {
 
 // 5.
 
+class Prenda {
+  const property tipoTela;
+  method tiempoDeFabricacion();
+}
+
+object denim {
+  
+}
+
+object lycra {
+
+}
+
+object modal {
+
+}
+
+class Falda inherits Prenda{
+  override method tiempoDeFabricacion(){
+    return 120;
+  }
+}
+
+class Blusa inherits Prenda{
+  var cantBotones;
+
+  override method tiempoDeFabricacion(){
+    return 200 + 5 * cantBotones;
+  }
+}
+
+class Short inherits Prenda{
+  
+}
