@@ -75,47 +75,48 @@ class ShortDenim {
   }
 }
 
-// 1. Falso. Es correcto el uso del polimorfismo ya que cualquier prenda puede ser intercambiada sin que un tercero que la utilice se vea afectado.
+// 1. Falso. Es correcto el uso del polimorfismo ya que cualquier prenda puede ser intercambiada sin que un tercero que lo utilice se vea afectado.
 
 // 2. Falso. Hay repeticion de logica ya que siempre se retorna 120 mas alguna operacion.
 
-// 3. Falso. Si bien soluciona gran parte de la logica repetida, se debe acompañar de polimorfismo. 
+// 3. Falso. Si bien soluciona gran parte de la logica repetida, se debe acompañar de composicion para los tipos de telas. 
 
-// 4. 
+// 4. Falso. La solucion es bastante declarativa ya que los metodos no poseen una estructura muy extensa, a la vez que se utiliza orden superior.
 
 // 5.
 
 class Prenda {
-  const property tipoTela;
-  method tiempoDeFabricacion();
+	var tipoTela;
+    
+  method tiempoFabricacionPorPrenda();
+  	
+  method mostrarTiempoFabricacion(){
+		console.println(self.tiempoFabricacion());
+	};
+  	
+  method tiempoFabricacion() = tipoTela.tiempoPorTipoTela(self.tiempoFabricacionPorPrenda());   
 }
 
 object denim {
-  
+	method tiempoPorTipoTela(tiempoPorPrenda) = tiempoPorPrenda + 25;
 }
 
-object lycra {
-
+object lycra{
+	method tiempoPorTipoTela(tiempoPorPrenda) = 1.20 * tiempoPorPrenda;
+	
 }
 
-object modal {
-
+object modal{
+	method tiempoPorTipoTela(tiempoPorPrenda) = tiempoPorPrenda;
 }
 
-class Falda inherits Prenda{
-  override method tiempoDeFabricacion(){
-    return 120;
-  }
-}
+class Short inherits Prenda{}
 
 class Blusa inherits Prenda{
   var cantBotones;
-
-  override method tiempoDeFabricacion(){
-    return 200 + 5 * cantBotones;
-  }
+  override method tiempoFabricacionPorPrenda() = 200 + 5 * cantBotones;
 }
 
-class Short inherits Prenda{
-  
+class Falda inherits Prenda{
+  override method tiempoFabricacionPorPrenda() = 120;
 }
