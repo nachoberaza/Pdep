@@ -57,15 +57,14 @@ ubicadoEn barrios = (`elem` barrios).barrio
 -- departamento se encuentra entre los dos valores indicados.
 
 cumpleRango :: Ord a => (Depto -> a ) -> a -> a -> Requisito
-cumpleRango f cotaInferior cotaSuperior = (between cotaInferior cotaSuperior) . f
+cumpleRango f cotaInferior cotaSuperior = between cotaInferior cotaSuperior . f
 
 -- 3.a. Definir la funcion `cumpleBusqueda` que se cumple si todos los 
 -- requisitos de una busqueda se verifican para un depto dado.
 
 cumpleBusqueda :: Depto -> (Busqueda -> Bool)
-cumpleBusqueda depto busqueda = all (\requisito -> requisito depto) busqueda
 -- con point free:
-cumpleBusqueda' depto = all (\requisito -> requisito depto) 
+cumpleBusqueda depto = all (\requisito -> requisito depto) 
 
 -- 3.b. Definir una funcion buscar que a partir de una busqueda, un criterio de ordenamiento y una lista de departamentos 
 -- retorne todos aquellos que cumplen con la busqueda ordenados en base al criterio recibido.
@@ -73,5 +72,22 @@ cumpleBusqueda' depto = all (\requisito -> requisito depto)
 buscar :: Busqueda -> (Depto -> Requisito) -> [Depto] -> [Depto]
 buscar busqueda criterio = ordenarSegun criterio . filter (`cumpleBusqueda` busqueda) 
 
+
+-- 3.c Mostrar un ejemplo de uso de buscar para obtener los departamentos de ejemplo, ordenado por mayor superficie, que cumplan con:
+--  Encontrarse en Recoleta o Palermo
+--  Ser de 1 o 2 ambientes
+--  Alquilarse a menos de $6000 por mes
+
+ejemploBuscar :: [Depto]
+ejemploBuscar = buscar [ 
+  ubicadoEn ["Recoleta", "Palermo"],
+  cumpleRango ambientes 1 2, 
+  cumpleRango precio 0 6000 
+  ] (mayor superficie) deptosDeEjemplo
+
+
 -- 4.c. Definir la funcion `mailsDePersonasInteresadas` que a partir de un departamento y una lista de personas
 -- retorne los mails de las personas que tienen alguna busqueda que se cumpla para el departamento dado.
+
+mailsDePersonasInteresadas :: Depto -> [Persona] -> [Mail]
+mailsDePersonasInteresadas depto = map mail . filter (any (cumpleBusqueda depto) . busquedas)
