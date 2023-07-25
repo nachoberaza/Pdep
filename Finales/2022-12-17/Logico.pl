@@ -1,9 +1,10 @@
+toma(juan, vino(cabernet, 4)).
 toma(juan, coca).
-toma(juan, vino(malbec, 3)).
 toma(daiana, cerveza(golden, 18,0)).
 toma(gisela, cerveza(ipa, 52,7)).
 toma(edu, cerveza(stout, 28, 6)).
 
+/*
 tieneProblemas(Persona):-
   findall(
     C,(toma(Persona, cerveza(C,_,A)), A>0),Cs
@@ -14,6 +15,7 @@ tieneProblemas(Persona):-
   length(Vs, CVs),
   length(Ts, CTs),
   CTs is CCs + CVs.
+*/
 
 
 % 1. VoF:
@@ -34,7 +36,7 @@ las bebidas alcoholicas sean distintas, esto puede delegarse a un predicado apar
 1.b. Falso. Esta falta de delegacion del predicado hace que sea poco declarativa ya que tiene muchos pasos, 
 provocando que sea demasiado procedural.
 
-1.c. Verdadero. La solucion se podria mejorar utilizando polimorfismo y pattern matching.
+1.c. Verdadero. La solucion se podria mejorar utilizando polimorfismo y orden superior.
 */
 
 /*
@@ -42,4 +44,18 @@ provocando que sea demasiado procedural.
 que la cantidad total de bebidas tomadas. Por lo tanto al consultar '?- tieneProblemas(P)' se consulta por las personas
 que todas las bebidas que toman son alcoholicas.
 */
+
+esBebidaAlcoholica(vino(_,_)).
+
+esBebidaAlcoholica(cerveza(_,_,Alcohol)):-
+  Alcohol > 0.
+
+tieneProblemas(Persona) :-
+  toma(Persona,_),
+  forall(
+    toma(Persona, Bebida),
+    esBebidaAlcoholica(Bebida)
+  ).
+
+
 
