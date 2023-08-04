@@ -1,0 +1,29 @@
+Funcional:
+  Estrategias de evaluacion:
+    - Eager evaluation
+        Estrategia que evalua un bloque de codigo tan pronto como es posible.
+
+    - Lazy evaluation
+        Estrategia que permite que un bloque de codigo sea evaluado solo cuando se lo necesite, permitiendo
+        realizar codigo que tiene rendimiento superior en ciertas situaciones.
+
+Objetos:
+  4 pilares de la programacion orientada a Objetos:
+    - Polimorfismo
+        Capacidad que poseen varios objetos para entender un mismo mensaje, aunque su comportamiento sea
+        diferente.
+
+    - Herencia
+        Es un mecanismo que permite a una clase crearse a partir de otra clase "padre", adquiriendo los metodos y propiedades
+        que se le "heredan".
+
+    - Encapsulamiento
+        Capacidad de un objeto para reunir toda la informacion perteneciente a el, quedando asi aislado dentro del mismo.
+
+    - Abstraccion
+        Capacidad que posee una clase de poder representar una entidad de la vida real sin necesidad de expresar la complejidad
+        que esto conlleva.
+
+  Concepto de composicion:
+    La composicion es un mecanismo que permite a una clase construirse a partir de otros objetos de igual o 
+    distinto tipo, pudiendolos combinar para obtener la funcionalidad deseada.
